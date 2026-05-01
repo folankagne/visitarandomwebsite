@@ -19,6 +19,7 @@ import {
 type Props = {
   url: string;
   onReroll: () => void;
+  blogOnly?: boolean;
 };
 
 const fadeOutWheelAnimation = () => {

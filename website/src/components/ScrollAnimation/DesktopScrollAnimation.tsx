@@ -51,9 +51,11 @@ const fadeInFoundLinkAnimation = () => {
 export function DesktopScrollAnimation({
   onReroll,
   url,
+  blogOnly,
 }: {
   onReroll: () => void;
   url: string;
+  blogOnly?: boolean;
 }) {
   const urlWithoutWWW = url.replace('www.', '');
   const urlWithoutProtocol = urlWithoutWWW.replace(/(^\w+:|^)\/\//, '');
