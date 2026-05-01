@@ -1,18 +1,5 @@
-# This file tells Git which files shouldn't be added to source control
+node_modules/
+.wrangler/
 
-.idea
-dist
-node_modules
-storage
-
-block-list.txt
-*.db
-
-# SQLite dump files
-dumps/*
-
-crawler.db-shm
-crawler.db-wal
-
-config.json
-crawled-urls.csv
+# Generated SQL seed files — import into D1 then discard
+*.sql
