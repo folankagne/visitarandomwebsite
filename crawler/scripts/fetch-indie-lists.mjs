@@ -93,7 +93,7 @@ let fileIndex = 1;
 for (let i = 0; i < urls.length; i += BATCH) {
   const batch = urls.slice(i, i + BATCH);
   const values = batch.map(u => `('${u.replace(/'/g, "''")}', 1)`).join(',\n  ');
-  const sql = `INSERT OR IGNORE INTO page (url, is_blog) VALUES\n  ${values};\n`;
+  const sql = `INSERT INTO page (url, is_blog) VALUES\n  ${values}\nON CONFLICT(url) DO UPDATE SET is_blog = 1;\n`;
   const filename = `indie-${String(fileIndex).padStart(3, '0')}.sql`;
   fs.writeFileSync(filename, sql);
   console.log(`Wrote ${filename} (${batch.length} URLs)`);
