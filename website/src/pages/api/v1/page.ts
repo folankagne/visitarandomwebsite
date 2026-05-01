@@ -1,7 +1,57 @@
 import type { APIContext, APIRoute } from 'astro';
 
+const HOTEL_DOMAINS = [
+  'booking.com',
+  'hotels.com',
+  'expedia.com',
+  'airbnb.com',
+  'tripadvisor.com',
+];
+
+const HOTEL_DOMAIN_KEYWORDS = ['hotel', 'hostel', 'motel', 'resort', 'lodge', 'airbnb'];
+
+const PATH_HOTEL_KEYWORDS = [
+  '/hotel',
+  '/hotels',
+  '/motel',
+  '/accommodation',
+  '/lodge',
+  '/hostel',
+  '/resort',
+  '/inn',
+];
+
+export const isHotelUrl = (url: string): boolean => {
+  try {
+    const parsed = new URL(url);
+    const hostname = parsed.hostname.toLowerCase().replace(/^www\./, '');
+    const pathname = parsed.pathname.toLowerCase();
+
+    if (HOTEL_DOMAINS.some((domain) => hostname === domain || hostname.endsWith(`.${domain}`))) {
+      return true;
+    }
+
+    if (HOTEL_DOMAIN_KEYWORDS.some((kw) => hostname.includes(kw))) {
+      return true;
+    }
+
+    if (PATH_HOTEL_KEYWORDS.some((kw) => pathname.includes(kw))) {
+      return true;
+    }
+
+    return false;
+  } catch {
+    return false;
+  }
+};
+
 const isValid = (visitedDomains: string[], url: string) => {
   if (!isValidURLPattern(url)) return false;
+
+  if (isHotelUrl(url)) {
+    console.log(`[hotel-filter] Filtered out: ${url}`);
+    return false;
+  }
 
   const hasAlreadyVisited = visitedDomains.includes(new URL(url).hostname);
 
@@ -17,9 +67,24 @@ const isValidURLPattern = (url: string) => {
   }
 };
 
-const getURL = async (db: any, numberOfRows: number) => {
+const getURL = async (db: any) => {
   const statement = await db.prepare(
-    'SELECT * FROM page WHERE id = (ABS(RANDOM()) % (SELECT MAX(id) FROM page)) + 1 LIMIT 1'
+    `SELECT * FROM page
+     WHERE id >= (ABS(RANDOM()) % (SELECT MAX(id) FROM page)) + 1
+     AND url NOT LIKE '%booking.com%'
+     AND url NOT LIKE '%hotels.com%'
+     AND url NOT LIKE '%expedia.com%'
+     AND url NOT LIKE '%airbnb.com%'
+     AND url NOT LIKE '%tripadvisor.com%'
+     AND url NOT LIKE '%/hotel%'
+     AND url NOT LIKE '%/motel%'
+     AND url NOT LIKE '%/accommodation%'
+     AND url NOT LIKE '%/hostel%'
+     AND url NOT LIKE '%/resort%'
+     AND url NOT LIKE '%/lodge%'
+     AND url NOT LIKE '%/inn%'
+     ORDER BY id
+     LIMIT 1`
   );
 
   const result = await statement.first();
@@ -35,16 +100,15 @@ const MAX_TRIES = 150;
 
 const getValidURL = async (
   db: any,
-  numberOfRows: number,
   visitedDomains: string[]
 ) => {
-  let url = await getURL(db, numberOfRows);
+  let url = await getURL(db);
 
   let tries = 0;
 
   while (!isValid(visitedDomains, url) && tries < MAX_TRIES) {
     try {
-      url = await getURL(db, numberOfRows);
+      url = await getURL(db);
 
       tries++;
     } catch {
@@ -92,11 +156,9 @@ export const PUT: APIRoute = async (ctx) => {
     );
   }
 
-  const NUMBER_OF_ROWS = Number(ctx.locals.runtime.env.NUMBER_OF_ROWS) ?? 1;
-
   const db = ctx.locals.runtime.env.DB;
 
-  const validURL = await getValidURL(db, NUMBER_OF_ROWS, visitedDomains);
+  const validURL = await getValidURL(db, visitedDomains);
 
   if (!validURL) {
     return new Response(

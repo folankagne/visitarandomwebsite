@@ -1,28 +1,8 @@
-import { SpotlightProvider } from '../context/SpotlightContext';
-import { TextCarousel } from './TextCarousel';
-import { gsap } from 'gsap';
 import { usePageContext } from '../context/PageContext';
-import {
-  IsHoveringButtonProvider,
-  useIsHoveringButton,
-} from '../context/IsHoveringButtonContext';
-import { InstantMode } from './InstantMode';
-import { useURL } from '../hooks/useURL';
 import { useInstantModeEnabled } from '../context/InstantModeEnabledContext';
 
-const useRedirect = () => {
-  const url = useURL();
-
-  if (!url) {
-    return;
-  }
-
-  window.open(url, '_blank');
-};
-
-function CTASection() {
+export function HomePage() {
   const { setPage } = usePageContext();
-  const { setIsHoveringButton } = useIsHoveringButton();
   const { isEnabled } = useInstantModeEnabled();
 
   const handleClick = () => {
@@ -30,58 +10,51 @@ function CTASection() {
       setPage('instant');
       return;
     }
-
-    gsap.to('.wrapper', {
-      opacity: 0,
-      duration: 1,
-      onComplete: () => {
-        setPage('find-url');
-      },
-    });
-  };
-
-  const handleMouseEnter = () => {
-    setIsHoveringButton(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHoveringButton(false);
+    setPage('find-url');
   };
 
   return (
-    <div className='flex flex-col gap-3 items-center'>
-      <button
-        type='button'
-        className='pointer-events-auto py-3 px-9 text-xl select-none bg-gray-900 hover:border-accent transition-colors rounded-lg border border-gray-700'
-        onClick={handleClick}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        Visit a random website
-      </button>
-      <p className='text-gray-400 select-none'>
-        13,338,557 random websites indexed
-      </p>
-    </div>
-  );
-}
+    <div className='retro-wrapper'>
+      <main className='retro-main'>
+        <pre className='retro-ascii'>{`+----------------------------------+
+|   visit a random website  [v2]   |
++----------------------------------+`}</pre>
 
-export function HomePage() {
-  return (
-    <div className='wrapper'>
-      <IsHoveringButtonProvider>
-        <SpotlightProvider>
-          <InstantMode />
-          <div className='w-full fixed pointer-events-none z-10 top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-balance flex flex-col items-center gap-9 px-6'>
-            <div className='select-none text-3xl lg:text-4xl font-bold flex lg:w-[950px] md:w-[850px] flex-col text-center gap-6 '>
-              <h1>96.55% of pages receive no organic search traffic</h1>
-              <h1>Visit a random website and discover something new</h1>
-            </div>
-            <CTASection />
-          </div>
-          <TextCarousel />
-        </SpotlightProvider>
-      </IsHoveringButtonProvider>
+        <p className='retro-desc'>
+          96.55% of pages receive no organic search traffic.
+          <br />
+          Explore the forgotten corners of the internet.
+        </p>
+
+        <button type='button' className='retro-button' onClick={handleClick}>
+          [ visit a random site ]
+        </button>
+
+        <p className='retro-counter'>[ websites indexed: 13,338,557 ]</p>
+
+        <div className='retro-credit'>
+          <p>
+            Original project by{' '}
+            <a
+              href='https://github.com/longergrass/visitarandomwebsite'
+              target='_blank'
+              rel='noreferrer'
+            >
+              Made by longergrass
+            </a>
+          </p>
+          <p>
+            Fork &amp; redesign by{' '}
+            <a
+              href='https://github.com/folankagne/visitarandomwebsite'
+              target='_blank'
+              rel='noreferrer'
+            >
+              folankagne
+            </a>
+          </p>
+        </div>
+      </main>
     </div>
   );
 }

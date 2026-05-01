@@ -3,7 +3,6 @@ import '@fontsource/aileron/300.css';
 import '@fontsource/aileron/400.css';
 import '@fontsource/aileron/700.css';
 import '../style.css';
-import '@fontsource/fredoka-one';
 import { App } from '../components/App';
 ---
 
@@ -30,9 +29,14 @@ import { App } from '../components/App';
     <meta name='generator' content={Astro.generator} />
     <meta
       name='description'
-      content='Visit a random website and discover something new'
+      content='A fork of visitarandomwebsite by longergrass. Sends you to a random page on the internet.'
     />
-    <title>Visit A Random Website</title>
+    <meta
+      property='og:title'
+      content='Random Internet — a fork of visitarandomwebsite by longergrass'
+    />
+    <meta property='og:url' content='https://visitarandomwebsite.pages.dev' />
+    <title>Random Internet — a fork of visitarandomwebsite by longergrass</title>
   </head>
   <body>
     <App client:only='react' />

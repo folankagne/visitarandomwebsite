@@ -5,9 +5,10 @@ export function Footer() {
   return (
     <>
       <a
-        href='https://github.com/noahbaron91/visitarandomwebsite'
+        href='https://github.com/longergrass/visitarandomwebsite'
         className='fixed bottom-3 left-3'
         target='_blank'
+        title='Original project by longergrass'
       >
         <i.GitHubIcon />
       </a>
@@ -16,7 +17,7 @@ export function Footer() {
         <Dialog.Content className='DialogContent xl:w-[525px] fixed top-1/2 z-50 -translate-y-1/2 left-7 right-7 md:left-1/2 md:-translate-x-1/2 bg-gray-950 px-7 py-8 rounded-3xl gap-4 flex flex-col border border-gray-900'>
           <div className='flex justify-between'>
             <Dialog.Title className='text-3xl text-white'>
-              I{"'"}m glad!
+              About
             </Dialog.Title>
             <Dialog.Close>
               <i.CloseIcon />
@@ -26,28 +27,25 @@ export function Footer() {
           <Dialog.Description asChild>
             <div className='xl:text-lg flex gap-3 flex-col'>
               <p>
-                You can view a full list of my projects on{' '}
+                Original project by{' '}
                 <a
-                  href='https://nbaron.com'
+                  href='https://github.com/longergrass/visitarandomwebsite'
                   target='_blank'
                   className='underline text-accent'
                 >
-                  nbaron.com
+                  longergrass
                 </a>
               </p>
               <p>
-                If you want to fund my future projects or show your appreciation
-                for my work{' '}
+                Forked &amp; redesigned by{' '}
                 <a
-                  href='https://buymeacoffee.com/noahbaron'
-                  className='underline text-accent'
+                  href='https://github.com/folankagne/visitarandomwebsite'
                   target='_blank'
+                  className='underline text-accent'
                 >
-                  you can buy me a coffee
+                  folankagne
                 </a>
               </p>
-              <p>I have soooo many projects I can’t wait to build</p>
-              <p>Thank you {':)'}</p>
             </div>
           </Dialog.Description>
           <Dialog.Close
@@ -59,7 +57,7 @@ export function Footer() {
           <Dialog.Close></Dialog.Close>
         </Dialog.Content>
         <Dialog.Trigger className='fixed underline text-gray-500 bottom-3 right-3'>
-          enjoy this website?
+          about this site
         </Dialog.Trigger>
       </Dialog.Root>
     </>

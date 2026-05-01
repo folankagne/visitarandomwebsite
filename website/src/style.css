@@ -2,6 +2,80 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Retro home page ──────────────────────────────────────── */
+
+.retro-wrapper {
+  position: fixed;
+  inset: 0;
+  background: #f5f0e8;
+  overflow-y: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  font-family: 'Courier New', Courier, monospace;
+  color: #1a1a1a;
+  z-index: 1;
+}
+
+.retro-wrapper a { color: #0000ee; text-decoration: underline; }
+.retro-wrapper a:visited { color: #551a8b; }
+
+.retro-main {
+  max-width: 600px;
+  width: 100%;
+  border: 1px solid #999;
+  padding: 2rem;
+}
+
+.retro-ascii {
+  text-align: center;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+}
+
+.retro-desc {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin-bottom: 0.5rem;
+}
+
+.retro-button {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1rem;
+  background: none;
+  border: 1px solid #333;
+  color: #1a1a1a;
+  padding: 0.6rem 1.4rem;
+  cursor: pointer;
+  display: block;
+  margin: 2rem auto;
+  letter-spacing: 0.05em;
+  transition: background 0.1s, color 0.1s;
+}
+
+.retro-button:hover { background: #1a1a1a; color: #f5f0e8; }
+
+.retro-counter {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #555;
+  margin: 0;
+}
+
+.retro-credit {
+  font-size: 0.8rem;
+  color: #555;
+  text-align: center;
+  margin-top: 2rem;
+  border-top: 1px solid #ccc;
+  padding-top: 1rem;
+}
+
+.retro-credit p { margin: 0.3rem 0; }
+
 body {
   font-family: 'Aileron', ui-sans-serif, system-ui, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
