@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { useVisitedDomains } from '../context/VisitedDomains';
 
-async function getURL(visitedDomains: string[]) {
+async function getURL(visitedDomains: string[], blogOnly: boolean) {
   try {
     const result = await fetch('/api/v1/page', {
       method: 'PUT',
-      body: JSON.stringify({ visitedDomains }),
+      body: JSON.stringify({ visitedDomains, blogOnly }),
     });
 
     if (!result.ok) {
@@ -24,7 +24,7 @@ async function getURL(visitedDomains: string[]) {
 
     await oneSecondWait;
 
-    return await getURL(visitedDomains);
+    return await getURL(visitedDomains, blogOnly);
   }
 }
 
@@ -36,7 +36,7 @@ const getURLHostName = (url: string): string | null => {
   }
 };
 
-export const useURL = () => {
+export const useURL = (blogOnly = false) => {
   const [url, setURL] = useState<null | string>(null);
   const { addVisitedDomain, visitedDomains } = useVisitedDomains();
 
@@ -47,7 +47,7 @@ export const useURL = () => {
 
     hasRequestedURL.current = true;
 
-    getURL(visitedDomains).then((url) => {
+    getURL(visitedDomains, blogOnly).then((url) => {
       setURL(url);
 
       if (url) {

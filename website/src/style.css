@@ -58,6 +58,22 @@
 
 .retro-button:hover { background: #1a1a1a; color: #f5f0e8; }
 
+.retro-button-secondary {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1rem;
+  background: none;
+  border: 1px solid #aaa;
+  color: #555;
+  padding: 0.6rem 1.4rem;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto 2rem;
+  letter-spacing: 0.05em;
+  transition: background 0.1s, color 0.1s, border-color 0.1s;
+}
+
+.retro-button-secondary:hover { border-color: #333; color: #1a1a1a; }
+
 .retro-counter {
   text-align: center;
   font-size: 0.8rem;

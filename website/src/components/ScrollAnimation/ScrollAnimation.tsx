@@ -4,8 +4,8 @@ import { MobileScrollAnimation } from './MobileScrollAnimation';
 import { useURL } from '../../hooks/useURL';
 import { Spinner } from '../Spinner';
 
-export function ScrollAnimation({ onReroll }: { onReroll: () => void }) {
-  const url = useURL();
+export function ScrollAnimation({ onReroll, blogOnly }: { onReroll: () => void; blogOnly?: boolean }) {
+  const url = useURL(blogOnly);
 
   const [windowWidth, setWindowWidth] = useState<number | null>(null);
 
@@ -23,9 +23,9 @@ export function ScrollAnimation({ onReroll }: { onReroll: () => void }) {
           <Spinner />
         </div>
       ) : windowWidth > 968 ? (
-        <DesktopScrollAnimation url={url} onReroll={onReroll} />
+        <DesktopScrollAnimation url={url} onReroll={onReroll} blogOnly={blogOnly} />
       ) : (
-        <MobileScrollAnimation url={url} onReroll={onReroll} />
+        <MobileScrollAnimation url={url} onReroll={onReroll} blogOnly={blogOnly} />
       )}
     </div>
   );

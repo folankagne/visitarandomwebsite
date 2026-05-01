@@ -11,14 +11,14 @@ import { InstantModeEnabledProvider } from '../context/InstantModeEnabledContext
 import { Instant } from './Instant';
 
 function Router() {
-  const { page } = usePageContext();
+  const { page, blogOnly } = usePageContext();
 
   switch (page) {
     case 'home': {
       return <HomePage />;
     }
     case 'find-url': {
-      return <FindURL />;
+      return <FindURL blogOnly={blogOnly} />;
     }
     case 'instant': {
       return <Instant />;

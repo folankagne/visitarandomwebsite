@@ -67,7 +67,9 @@ const isValidURLPattern = (url: string) => {
   }
 };
 
-const getURL = async (db: any) => {
+const getURL = async (db: any, blogOnly: boolean) => {
+  const blogFilter = blogOnly ? 'AND is_blog = 1' : '';
+
   const statement = await db.prepare(
     `SELECT * FROM page
      WHERE id >= (ABS(RANDOM()) % (SELECT MAX(id) FROM page)) + 1
@@ -83,6 +85,7 @@ const getURL = async (db: any) => {
      AND url NOT LIKE '%/resort%'
      AND url NOT LIKE '%/lodge%'
      AND url NOT LIKE '%/inn%'
+     ${blogFilter}
      ORDER BY id
      LIMIT 1`
   );
@@ -100,15 +103,16 @@ const MAX_TRIES = 150;
 
 const getValidURL = async (
   db: any,
-  visitedDomains: string[]
+  visitedDomains: string[],
+  blogOnly: boolean
 ) => {
-  let url = await getURL(db);
+  let url = await getURL(db, blogOnly);
 
   let tries = 0;
 
   while (!isValid(visitedDomains, url) && tries < MAX_TRIES) {
     try {
-      url = await getURL(db);
+      url = await getURL(db, blogOnly);
 
       tries++;
     } catch {
@@ -156,9 +160,10 @@ export const PUT: APIRoute = async (ctx) => {
     );
   }
 
+  const blogOnly = body.blogOnly === true;
   const db = ctx.locals.runtime.env.DB;
 
-  const validURL = await getValidURL(db, visitedDomains);
+  const validURL = await getValidURL(db, visitedDomains, blogOnly);
 
   if (!validURL) {
     return new Response(

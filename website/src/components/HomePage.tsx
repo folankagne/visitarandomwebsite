@@ -2,14 +2,20 @@ import { usePageContext } from '../context/PageContext';
 import { useInstantModeEnabled } from '../context/InstantModeEnabledContext';
 
 export function HomePage() {
-  const { setPage } = usePageContext();
+  const { setPage, setBlogOnly } = usePageContext();
   const { isEnabled } = useInstantModeEnabled();
 
   const handleClick = () => {
+    setBlogOnly(false);
     if (isEnabled) {
       setPage('instant');
       return;
     }
+    setPage('find-url');
+  };
+
+  const handleBlogClick = () => {
+    setBlogOnly(true);
     setPage('find-url');
   };
 
@@ -28,6 +34,10 @@ export function HomePage() {
 
         <button type='button' className='retro-button' onClick={handleClick}>
           [ visit a random site ]
+        </button>
+
+        <button type='button' className='retro-button-secondary' onClick={handleBlogClick}>
+          [ visit a random blog ]
         </button>
 
         <p className='retro-counter'>[ websites indexed: 13,338,557 ]</p>

@@ -7,12 +7,12 @@ import { ScrollAnimation } from './ScrollAnimation/ScrollAnimation';
 
 gsap.registerPlugin(Flip, CustomEase, TextPlugin);
 
-export function FindURL() {
+export function FindURL({ blogOnly }: { blogOnly?: boolean }) {
   const [key, rerender] = useState(Math.random());
 
   const handleReroll = () => {
     rerender(Math.random());
   };
 
-  return <ScrollAnimation key={key} onReroll={handleReroll} />;
+  return <ScrollAnimation key={key} onReroll={handleReroll} blogOnly={blogOnly} />;
 }
