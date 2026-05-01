@@ -94,6 +94,23 @@
 
 /* ── Retro find-URL page ──────────────────────────────────── */
 
+.retro-back-btn {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 50;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.8rem;
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  padding: 0.25rem 0;
+}
+
+.retro-back-btn:hover { color: #1a1a1a; }
+
 .retro-find-bg {
   position: fixed;
   inset: 0;
