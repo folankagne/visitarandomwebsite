@@ -3,7 +3,6 @@ import { DesktopScrollAnimation } from './DesktopScrollAnimation';
 import { MobileScrollAnimation } from './MobileScrollAnimation';
 import { useURL } from '../../hooks/useURL';
 import { Spinner } from '../Spinner';
-import { useInstantModeEnabled } from '../../context/InstantModeEnabledContext';
 
 export function ScrollAnimation({ onReroll }: { onReroll: () => void }) {
   const url = useURL();
@@ -12,23 +11,22 @@ export function ScrollAnimation({ onReroll }: { onReroll: () => void }) {
 
   useEffect(() => {
     setWindowWidth(window.innerWidth);
-
-    window.addEventListener('resize', () => {
-      setWindowWidth(window.innerWidth);
-    });
+    const handler = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handler);
+    return () => window.removeEventListener('resize', handler);
   }, []);
 
-  if (!url || typeof windowWidth !== 'number') {
-    return (
-      <div className='fixed top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2'>
-        <Spinner />
-      </div>
-    );
-  }
-
-  if (windowWidth > 968) {
-    return <DesktopScrollAnimation url={url} onReroll={onReroll} />;
-  }
-
-  return <MobileScrollAnimation url={url} onReroll={onReroll} />;
+  return (
+    <div className='retro-find-bg'>
+      {!url || typeof windowWidth !== 'number' ? (
+        <div className='fixed top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2'>
+          <Spinner />
+        </div>
+      ) : windowWidth > 968 ? (
+        <DesktopScrollAnimation url={url} onReroll={onReroll} />
+      ) : (
+        <MobileScrollAnimation url={url} onReroll={onReroll} />
+      )}
+    </div>
+  );
 }

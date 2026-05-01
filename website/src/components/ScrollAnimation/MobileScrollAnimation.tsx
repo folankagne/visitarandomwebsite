@@ -90,7 +90,7 @@ export function MobileScrollAnimation({ url, onReroll }: Props) {
   const backgroundCarouselStyle: React.CSSProperties = useMemo(
     () => ({
       background:
-        'linear-gradient(black, transparent 25%), linear-gradient(0deg, black, transparent 25%)',
+        'linear-gradient(#f5f0e8, transparent 25%), linear-gradient(0deg, #f5f0e8, transparent 25%)',
     }),
     []
   );
@@ -101,7 +101,7 @@ export function MobileScrollAnimation({ url, onReroll }: Props) {
         ref={wrapperRef}
         className='fixed opacity-0 top-1/2 -translate-y-1/2 flex flex-col gap-5 w-full'
       >
-        <h3 className='fade-out text-3xl text-white mx-8 font-bold text-center z-10'>
+        <h3 className='fade-out text-2xl mx-8 text-center z-10' style={{ fontFamily: "'Courier New', Courier, monospace", color: '#1a1a1a' }}>
           <span>{searchText}</span>
           <span>.</span>
           <span>.</span>
@@ -119,7 +119,8 @@ export function MobileScrollAnimation({ url, onReroll }: Props) {
             />
             <div
               ref={wheelRef}
-              className='hide-scrollbar max-h-96 overflow-scroll flex text-lg gap-3 flex-col text-white relative max-w-[200px] min-[480px]:max-w-[280px] sm:max-w-[360px]'
+              className='hide-scrollbar max-h-96 overflow-scroll flex text-lg gap-3 flex-col relative max-w-[200px] min-[480px]:max-w-[280px] sm:max-w-[360px]'
+              style={{ color: '#1a1a1a', fontFamily: "'Courier New', Courier, monospace" }}
             >
               {Array.from({ length: randomNumberOfTextElements }).map(
                 (_, index) => (
@@ -145,13 +146,13 @@ export function MobileScrollAnimation({ url, onReroll }: Props) {
                 >
                   <VisitWebsiteWarning
                     url={url}
-                    className='flex px-6 bg-secondary text-lg border border-[#BF6FFE] py-3 rounded justify-between items-center'
+                    className='retro-visit-btn w-full'
                   />
                   <button
                     onClick={handleReroll}
-                    className='flex w-full border bg-gray-900 text-lg border-gray-700 rounded px-6 py-3 justify-between items-center'
+                    className='retro-reroll-btn w-full'
                   >
-                    Reroll <i.Reroll />
+                    [ reroll ] <i.Reroll />
                   </button>
                 </div>
               </div>

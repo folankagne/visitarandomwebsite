@@ -30,7 +30,7 @@ const hideSearchingLinksTextAnimation = (
 
 const highlightTextAnimation = (target: HTMLDivElement) => {
   gsap.to(target, {
-    color: '#C580FC',
+    color: '#8b4513',
     duration: 1,
   });
 };
@@ -107,7 +107,7 @@ export function DesktopScrollAnimation({
   const wheelBackgroundStyle = useMemo(
     () => ({
       background:
-        'linear-gradient(black, transparent 25%), linear-gradient(0deg, black, transparent 25%)',
+        'linear-gradient(#f5f0e8, transparent 25%), linear-gradient(0deg, #f5f0e8, transparent 25%)',
     }),
     []
   );
@@ -117,26 +117,26 @@ export function DesktopScrollAnimation({
       ref={wrapperRef}
       className='opacity-0 flex w-screen justify-center gap-5 xl:gap-28 fixed top-1/2 -translate-y-1/2'
     >
-      <div className='flex items-left gap-6 w-[480px] justify-center flex-col'>
-        <h1 ref={searchingLinksTextRef} className='text-5xl'>
-          Searching links...
+      <div className='flex items-left gap-6 w-[480px] justify-center flex-col' style={{ fontFamily: "'Courier New', Courier, monospace", color: '#1a1a1a' }}>
+        <h1 ref={searchingLinksTextRef} className='text-4xl'>
+          [ searching links... ]
         </h1>
         <div className='flex flex-col gap-2 found-link opacity-0'>
-          <h1 className='text-4xl'>Found the perfect link</h1>
-          <p className='text-2xl text-[#A8A29E] text-ellipsis overflow-clip text-wrap line-clamp-2 break-all'>
+          <h1 className='text-3xl'>Found:</h1>
+          <p className='text-lg text-ellipsis overflow-clip text-wrap line-clamp-2 break-all' style={{ color: '#555' }}>
             {urlWithoutProtocol}
           </p>
         </div>
         <div className='flex flex-col gap-3 found-link opacity-0'>
           <VisitWebsiteWarning
             url={url}
-            className='text-lg rounded-lg justify-between items-center py-4 px-9 flex w-[450px] bg-secondary border border-[#BF6FFE] border-solid'
+            className='retro-visit-btn w-[450px]'
           />
           <button
             onClick={handleReroll}
-            className='text-lg px-9 py-4 rounded-lg flex w-[450px] bg-gray-900 border border-gray-700 justify-between items-center'
+            className='retro-reroll-btn w-[450px]'
           >
-            Reroll <i.Reroll />
+            [ reroll ] <i.Reroll />
           </button>
         </div>
       </div>
@@ -152,7 +152,8 @@ export function DesktopScrollAnimation({
           />
           <div
             ref={wheelRef}
-            className='hide-scrollbar max-h-screen overflow-scroll flex text-lg gap-6 flex-col text-white relative md:max-w-[350px] xl:max-w-[500px]'
+            className='hide-scrollbar max-h-screen overflow-scroll flex text-lg gap-6 flex-col relative md:max-w-[350px] xl:max-w-[500px]'
+            style={{ color: '#1a1a1a', fontFamily: "'Courier New', Courier, monospace" }}
           >
             {Array.from({ length: 250 }).map((_, index) => (
               <TextWheelElement

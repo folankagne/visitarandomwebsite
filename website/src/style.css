@@ -76,6 +76,50 @@
 
 .retro-credit p { margin: 0.3rem 0; }
 
+/* ── Retro find-URL page ──────────────────────────────────── */
+
+.retro-find-bg {
+  position: fixed;
+  inset: 0;
+  background: #f5f0e8;
+  font-family: 'Courier New', Courier, monospace;
+  color: #1a1a1a;
+}
+
+.retro-visit-btn {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.95rem;
+  background: none;
+  border: 1px solid #333;
+  color: #1a1a1a;
+  padding: 0.65rem 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  letter-spacing: 0.04em;
+  transition: background 0.1s, color 0.1s;
+}
+
+.retro-visit-btn:hover { background: #1a1a1a; color: #f5f0e8; }
+
+.retro-reroll-btn {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.95rem;
+  background: none;
+  border: 1px solid #aaa;
+  color: #666;
+  padding: 0.65rem 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  letter-spacing: 0.04em;
+  transition: background 0.1s;
+}
+
+.retro-reroll-btn:hover { background: #e8e3d8; }
+
 body {
   font-family: 'Aileron', ui-sans-serif, system-ui, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
