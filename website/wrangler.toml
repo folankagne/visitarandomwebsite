@@ -9,5 +9,5 @@ bucket = './dist'
 [[d1_databases]]
 binding = "DB"
 database_name = "visitarandomwebsite"
-database_id = "247d26c5-be78-4dab-81ef-474ce74f5b36"
+database_id = "08e35040-8a13-446f-a68a-c4e2a266db77"
 preview_database_id = "DB" 
