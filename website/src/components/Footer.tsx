@@ -14,12 +14,12 @@ export function Footer() {
   return (
     <>
       <a
-        href='https://github.com/longergrass/visitarandomwebsite'
+        href='https://github.com/folankagne/visitarandomwebsite'
         className='fixed bottom-3 left-3'
         style={{ zIndex: 60 }}
         target='_blank'
         rel='noreferrer'
-        title='Original project by longergrass'
+        title='View on GitHub'
       >
         <i.GitHubIcon />
       </a>

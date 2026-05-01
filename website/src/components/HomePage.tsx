@@ -55,12 +55,6 @@ export function HomePage() {
               folankagne
             </a>
           </p>
-          <p>
-            Built with{' '}
-            <a href='https://claude.ai/code' target='_blank' rel='noreferrer'>
-              Claude Code
-            </a>
-          </p>
         </div>
       </main>
     </div>
