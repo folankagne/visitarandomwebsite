@@ -92,6 +92,16 @@
 
 .retro-credit p { margin: 0.3rem 0; }
 
+.retro-source-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.4rem;
+  line-height: 1.9;
+}
+
+.retro-source-list a { color: #0000ee; text-decoration: underline; }
+.retro-source-list a:visited { color: #551a8b; }
+
 /* ── Retro find-URL page ──────────────────────────────────── */
 
 .retro-back-btn {

@@ -68,3 +68,4 @@ Requires a `wrangler.toml` with a D1 binding named `DB`.
 
 - Original project: [longergrass](https://github.com/longergrass/visitarandomwebsite)
 - Fork & redesign: [folankagne](https://github.com/folankagne/visitarandomwebsite)
+- Built with the help of [Claude Code](https://claude.ai/code) by Anthropic

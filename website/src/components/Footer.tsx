@@ -16,6 +16,7 @@ export function Footer() {
       <a
         href='https://github.com/longergrass/visitarandomwebsite'
         className='fixed bottom-3 left-3'
+        style={{ zIndex: 60 }}
         target='_blank'
         rel='noreferrer'
         title='Original project by longergrass'
@@ -74,7 +75,7 @@ export function Footer() {
             </ul>
           </div>
 
-          <div style={{ borderTop: '1px solid #ccc', paddingTop: '0.8rem', fontSize: '0.8rem', color: '#555' }}>
+          <div style={{ borderTop: '1px solid #ccc', paddingTop: '0.8rem', fontSize: '0.8rem', color: '#555', lineHeight: 1.8 }}>
             <p>
               Original project:{' '}
               <a
@@ -95,6 +96,17 @@ export function Footer() {
                 style={{ color: '#0000ee', textDecoration: 'underline' }}
               >
                 folankagne
+              </a>
+            </p>
+            <p>
+              Built with the help of{' '}
+              <a
+                href='https://claude.ai/code'
+                target='_blank'
+                rel='noreferrer'
+                style={{ color: '#0000ee', textDecoration: 'underline' }}
+              >
+                Claude Code
               </a>
             </p>
           </div>
@@ -126,6 +138,7 @@ export function Footer() {
             border: 'none',
             cursor: 'pointer',
             textDecoration: 'underline',
+            zIndex: 60,
           }}
         >
           [ about ]
